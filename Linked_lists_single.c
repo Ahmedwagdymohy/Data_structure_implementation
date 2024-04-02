@@ -19,9 +19,9 @@
 
 /**
  * @brief Create a node object with given data
- * 
- * @param data 
- * @return struct node* 
+ *
+ * @param data
+ * @return struct node*
  */
 struct node* create_node(int data );
 
@@ -29,11 +29,11 @@ struct node* create_node(int data );
 
 
 /**
- * @brief delete the give node 
+ * @brief delete the give node
  *        NOTE: the node given should be a pointer to the node
- * 
- * @param user_node 
- * @return int 
+ *
+ * @param user_node
+ * @return int
  */
 int delete_node(struct node *user_node);
 
@@ -51,8 +51,8 @@ void push_node(struct node* user_node, int position);
 
 /**
  * @brief return the number of the elements in the list
- * 
- * @return int 
+ *
+ * @return int
  */
 int list_count();
 
@@ -62,8 +62,8 @@ int list_count();
 
 /**
  * @brief  retrun the middle element of the list
- * 
- * @return struct node* 
+ *
+ * @return struct node*
  */
 struct node* return_middle_element();
 
@@ -106,7 +106,7 @@ int main(){
     push_node(node2, 0);
     push_node(node3, 0);
     push_node(node4, 1);
-    push_node(node5, 1);
+    push_node(node5, 2);
     printf("the data is: ");
     list_print();
     printf("\n");
@@ -212,6 +212,7 @@ int delete_node(struct node *user_node){
  * @param user_node
  * @param position : 0 -> to insert at beginging
  *                   1 -> to insert at the end
+ *                   2 -> to insert in the middle ( sheet QUestions required )
  */
 
 void push_node(struct node* user_node, int position){
@@ -224,9 +225,10 @@ void push_node(struct node* user_node, int position){
         if(position == 0){
             user_node->next = head;
             head = user_node;
+            return;
 
         }/**inserting at the end of the list*/
-        else{
+        else if (position == 1){
 
             /**looping till we reach the final node*/
             /*Creating another pointer to walk throught the nodes*/
@@ -241,8 +243,25 @@ void push_node(struct node* user_node, int position){
             /*putting the data*/
             pointer->next = user_node;
             user_node->next = NULL;
+            return;
 
 
+        } else{
+            /**using the function that finds the middle node*/
+            /**scenario is : we will create a pointer that points to the middle node that we have then we add the user_node
+             * before the middle node so we will need another pointer to get the node before the middle node
+             * because in single list we don't have backward pointer ONLY forward
+            */
+            struct node* middle_pointer = return_middle_element();
+            struct node* tempPointer = head;
+            while(tempPointer->next != middle_pointer){
+                /**now the tempPointer is just before the middle pointer*/
+                tempPointer = tempPointer->next;
+            }
+            /**adding the new node*/
+            user_node->next = middle_pointer;
+            tempPointer->next = user_node;
+            return;
         }
     }
 }
@@ -291,16 +310,16 @@ void list_print (){
 
 
 
-struct node* return_middle_element(){
-    /**creatring the two temp pointers that will traverse*/
-    struct node* temp1 = NULL;
-    struct node* temp2 = NULL;
-    temp1 = head;
-    temp2= head;
-    while(temp2->next !=NULL){
+struct node* return_middle_element() {
+    if (head == NULL || head->next == NULL) {
+        return NULL; // Return NULL if list has less than 2 nodes
+    }
+
+    struct node* temp1 = head;
+    struct node* temp2 = head;
+    while (temp2 != NULL && temp2->next != NULL) {
         temp1 = temp1->next;
         temp2 = temp2->next->next;
     }
-    /**after this the temp two pointer will at the end node and the middle one will be in the middle*/
     return temp1;
 }
