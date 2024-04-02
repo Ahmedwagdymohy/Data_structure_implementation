@@ -15,7 +15,26 @@
 
 
 ///////<headers//////////
+
+
+/**
+ * @brief Create a node object with given data
+ * 
+ * @param data 
+ * @return struct node* 
+ */
 struct node* create_node(int data );
+
+
+
+
+/**
+ * @brief delete the give node 
+ *        NOTE: the node given should be a pointer to the node
+ * 
+ * @param user_node 
+ * @return int 
+ */
 int delete_node(struct node *user_node);
 
 
@@ -28,14 +47,33 @@ int delete_node(struct node *user_node);
  *                   1 -> to insert at the end
  */
 void push_node(struct node* user_node, int position);
+
+
+/**
+ * @brief return the number of the elements in the list
+ * 
+ * @return int 
+ */
 int list_count();
 
 
 
 
 
+/**
+ * @brief  retrun the middle element of the list
+ * 
+ * @return struct node* 
+ */
+struct node* return_middle_element();
 
 
+
+
+
+
+
+/// @brief the main structure of the node /////////
 struct node{
 
 struct node* next ;
@@ -48,7 +86,13 @@ struct node* head = NULL;
 
 
 
-
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+/************************************< Main function goes here > ****************************************************/
+/***************************************************************************************************************/
+/***************************************************************************************************************/
+/***************************************************************************************************************/
 
 int main(){
 
@@ -56,11 +100,13 @@ int main(){
     struct node * node2 = create_node(8);
     struct node * node3 = create_node(10);
     struct node * node4 = create_node(99);
+    struct node * node5 = create_node(80);
     //don't forget that zero makes it inserts at the beginnings
     push_node(node1, 0);
     push_node(node2, 0);
     push_node(node3, 0);
-    //push_node(node4, 1);
+    push_node(node4, 1);
+    push_node(node5, 1);
     printf("the data is: ");
     list_print();
     printf("\n");
@@ -68,12 +114,25 @@ int main(){
     list_count();
     printf("\n");
     int status = 5;
-    status = delete_node(node2);
-    printf("the status of the delete is %i\n", status);
-    printf("the data after deletion is: ");
+    //status = delete_node(node2);
+    //printf("the status of the delete is %i\n", status);
+    //printf("the data after deletion is: ");
     list_print();
+    struct node* middle_node = return_middle_element();
+    int dataOfMiddleNode =middle_node->data;
+    printf("the data of the middle node is %i", dataOfMiddleNode);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
