@@ -54,12 +54,47 @@ void pushElements( struct stack <T>& stack, T data){
     stack.topPointer = &stack.stackData.back();
 }
 
-
+/**
+ * @brief printing the elements of the stack
+ * 
+ * @tparam T 
+ * @param stack 
+ */
 template <typename T>
 void printElements(struct stack <T>&stack){
     for(int i = 0 ; i<stack.stackData.size();i++){
         cout<<"the "<< i+1 << "element in the vector is " << stack.stackData[i]<<endl;
     }
+}
+
+
+
+
+/**
+ * @brief  pop the last element in the stack
+ * 
+ * @tparam T 
+ * @param stack 
+ */
+template < typename T>
+void popElements(struct stack<int>& stack ){
+    /**to pop elements of the vector use vector.pop_back() function */
+    stack.stackData.pop_back();
+    stack.topPointer = &stack.stackData.back();
+}
+
+
+
+
+/**
+ * @brief peek elements of stack ( get the value only no deletion)
+ * 
+ * @tparam T 
+ * @param stack 
+ */
+template < typename T>
+void peekElements(struct stack<int>& stack ){
+    cout<<"the last element in the stack is "<< stack.stackData.back();
 }
 
 
@@ -73,6 +108,9 @@ int main(){
     pushElements<int>(stack1, 2 );
     pushElements<int>(stack1, 3 );
     printElements<int>(stack1);
+    popElements<int> (stack1);
+    printElements<int>(stack1);
+    peekElements<int>(stack1);
 
     return 0 ;
 }
