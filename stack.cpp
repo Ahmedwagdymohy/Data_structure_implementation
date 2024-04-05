@@ -1,7 +1,7 @@
 /**
  * @file stack.cpp
  * @author Ahmed Wagdy
- * @brief   implementing the stack dataStructrue
+ * @brief   implementing the stack dataStructrue using template and vector
  * @version 0.1
  * @date 2024-04-05
  * 
