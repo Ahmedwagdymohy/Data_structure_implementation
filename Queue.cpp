@@ -13,14 +13,41 @@
 #include <iostream>
 #include <string> 
 #include <vector>
-
+using namespace std;
 
 /********< headers*/
-
+#define QueueSize 20
 template<typename T>
 struct queue{
-    T firstPointer* = nullptr;
-    T secondPointer* = nullptr;
-    
+    vector<T> queueData;
+    T *firstPointer = nullptr;
+    T *secondPointer = nullptr ;
+
 };
 
+
+template <typename T> 
+struct queue <T> createQueue(){
+    struct queue<T> Queue;
+    
+    Queue.firstPointer  = &(Queue.queueData.front());
+    Queue.secondPointer = &(Queue.queueData.back());
+    return Queue;
+}
+
+
+template <typename T> 
+void queueElement(struct queue<T> &Queue, T data){
+    
+}
+
+
+
+
+
+
+
+int main(){
+
+    return 0 ;
+}
