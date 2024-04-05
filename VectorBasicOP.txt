@@ -1,0 +1,31 @@
+#basic vector operations
+
+Vector.front() // returns the front element of the vector even this element is deleted it keeps updated to point to it
+Vector.back()  // returns the last element of the Vector
+
+
+
+myVector.push_back(10);      // Adding elements to the end of the vector
+myVector.insert(myVector.begin() + 2, 20); // Inserting at a specific position where "2" here is the index of the element we want to insert index
+myVector.pop_back();        // Removing the last element
+
+
+myVector.erase(myVector.begin() + 2);   // Removing elements at a specific position
+
+
+int size = myVector.size();          // Getting the number of elements in the vector
+
+                        
+int capacity = myVector.capacity();  // Getting the maximum number of elements the vector can hold without resizing
+
+
+///////////////****************Ways to print the elements of the vector****************///////////////////////////////
+for (int i : myVector) { //this will print the elements of the vector
+    std::cout << i << " ";
+}
+
+// Using iterators
+for (auto it = myVector.begin(); it != myVector.end(); ++it) {
+    std::cout << *it << " ";
+}
+
