@@ -25,7 +25,7 @@ using namespace std;
 template<typename T>
 struct stack{
     vector<T> stackData;
-    T *topPointer = NULL;
+    T *topPointer = nullptr;
 
 };
  
@@ -36,9 +36,9 @@ struct stack{
  * @return struct stack<int>* , we use refrence pointer because we return a pointer points to the new object of the struct
  *          so we can deal with it in the main function with a pointer points to it
  */
-
-struct stack<int>* CreateStack(){
-    struct stack<int> stack;
+template<typename T>
+struct stack<T> CreateStack(){     
+    struct stack<T> stack;
     /**making the top pointer points to the empty space we should put into*/
     /**making the ==> & operator before the vector elements to get the address cuz the vector indexing returns values*/
     stack.topPointer = &(stack.stackData[0]); 
@@ -47,11 +47,32 @@ struct stack<int>* CreateStack(){
 }
 
 
+template <typename T>
+/*taking the stack by reference */
+void pushElements( struct stack <T>& stack, T data){
+    stack.stackData.push_back(data);
+    stack.topPointer = &stack.stackData.back();
+}
+
+
+template <typename T>
+void printElements(struct stack <T>&stack){
+    for(int i = 0 ; i<stack.stackData.size();i++){
+        cout<<"the "<< i+1 << "element in the vector is " << stack.stackData[i]<<endl;
+    }
+}
+
 
 
 
 
 
 int main(){
+    struct stack<int> stack1 = CreateStack<int>();
+    pushElements<int>(stack1, 1 );
+    pushElements<int>(stack1, 2 );
+    pushElements<int>(stack1, 3 );
+    printElements<int>(stack1);
+
     return 0 ;
 }
